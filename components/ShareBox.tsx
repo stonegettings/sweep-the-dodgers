@@ -62,7 +62,10 @@ export default function ShareBox({
   const origin = preview ? "https://sweep-the-dodgers.vercel.app" : (siteUrl ?? (typeof window !== "undefined" ? window.location.origin : ""));
   const current = link && link.code === longCode ? link : null;
   const ready = current && current.status !== "pending";
-  const url = `${origin}/r/${current?.id ?? longCode}`;
+  // A short link when one could be saved; otherwise the game itself, never the long code,
+  // because messaging apps break long links apart and drop the preview picture.
+  const url = current?.id ? `${origin}/r/${current.id}` : origin;
+  const shortFailed = current?.status === "fallback";
   const text = shareText(data);
 
   async function nativeShare() {
@@ -130,6 +133,11 @@ export default function ShareBox({
           </a>
         </div>
         {!ready && <p className="recap-hint">Making your link...</p>}
+        {shortFailed && !preview && (
+          <p className="recap-hint" role="status">
+            Your result link couldn&apos;t be saved right now, so this shares the game instead. Friends can still play.
+          </p>
+        )}
         {note && (
           <p className="recap-hint" role="status">
             {note}

@@ -11,7 +11,13 @@ const ID = /^[A-Za-z0-9]{8}$/;
 const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
 // A connected store provides a read-write token, or a store id used with the deployment's OIDC identity.
-export const blobEnabled = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID);
+// When a store is connected with a custom prefix (MY_STORE_READ_WRITE_TOKEN), find that token too.
+export function blobToken(): string | undefined {
+  if (process.env.BLOB_READ_WRITE_TOKEN?.trim()) return undefined; // the library reads this one itself
+  const key = Object.keys(process.env).find((k) => k.endsWith("_READ_WRITE_TOKEN") && process.env[k]?.startsWith("vercel_blob_rw_"));
+  return key ? process.env[key] : undefined;
+}
+export const blobEnabled = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN?.trim() || process.env.BLOB_STORE_ID?.trim() || blobToken());
 
 // Stores are created public or private; work with either.
 const ACCESS = ["public", "private"] as const;
@@ -30,6 +36,7 @@ export async function saveResult(d: ShareData): Promise<string | null> {
     try {
       await put(`results/${id}.json`, JSON.stringify(d), {
         access,
+        token: blobToken(),
         addRandomSuffix: false,
         contentType: "application/json",
         cacheControlMaxAge: 60 * 60 * 24 * 365,
@@ -48,7 +55,7 @@ export async function loadResult(code: string): Promise<ShareData | null> {
   if (!blobEnabled()) return null;
   for (const access of ACCESS) {
     try {
-      const r = await get(`results/${code}.json`, { access });
+      const r = await get(`results/${code}.json`, { access, token: blobToken() });
       if (!r) continue;
       const json = (await new Response(r.stream).json()) as ShareData;
       // re-validate through the same checks as a long link
