@@ -39,6 +39,7 @@ export async function GET() {
       version: APP_VERSION,
       shareLinksUse: siteUrl(),
       shortLinks,
+      blobSignIn: blobToken() ? "read-write token" : process.env.BLOB_STORE_ID ? "token-free (store id)" : "none",
       blobSettingsFound: blobSettings,
       aiRecap: process.env.AI_GATEWAY_API_KEY || process.env.VERCEL_OIDC_TOKEN || process.env.VERCEL ? "connected" : "off",
     },

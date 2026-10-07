@@ -11,11 +11,14 @@ const ID = /^[A-Za-z0-9]{8}$/;
 const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
 
 // A connected store provides a read-write token, or a store id used with the deployment's OIDC identity.
-// When a store is connected with a custom prefix (MY_STORE_READ_WRITE_TOKEN), find that token too.
+// A read-write token, when the project has one, is always used first: it works on every
+// setup, while the token-free (OIDC) sign-in depends on project settings.
+// A store connected with a custom prefix (MY_STORE_READ_WRITE_TOKEN) is found too.
 export function blobToken(): string | undefined {
-  if (process.env.BLOB_READ_WRITE_TOKEN?.trim()) return undefined; // the library reads this one itself
-  const key = Object.keys(process.env).find((k) => k.endsWith("_READ_WRITE_TOKEN") && process.env[k]?.startsWith("vercel_blob_rw_"));
-  return key ? process.env[key] : undefined;
+  const direct = process.env.BLOB_READ_WRITE_TOKEN?.trim();
+  if (direct) return direct;
+  const key = Object.keys(process.env).find((k) => k.endsWith("_READ_WRITE_TOKEN") && process.env[k]?.trim().startsWith("vercel_blob_rw_"));
+  return key ? process.env[key]!.trim() : undefined;
 }
 export const blobEnabled = () => Boolean(process.env.BLOB_READ_WRITE_TOKEN?.trim() || process.env.BLOB_STORE_ID?.trim() || blobToken());
 
