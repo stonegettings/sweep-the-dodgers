@@ -1,0 +1,207 @@
+{
+ "lineup": [
+  {
+   "id": "ohtansh01",
+   "name": "Shohei Ohtani",
+   "pos": "DH",
+   "positions": [],
+   "bbref": "ohtansh01",
+   "rating": 170.3
+  },
+  {
+   "id": "bettsmo01",
+   "name": "Mookie Betts",
+   "pos": "SS",
+   "positions": [
+    "SS",
+    "RF",
+    "CF",
+    "2B"
+   ],
+   "bbref": "bettsmo01",
+   "rating": 104.1
+  },
+  {
+   "id": "freemfr01",
+   "name": "Freddie Freeman",
+   "pos": "1B",
+   "positions": [
+    "1B"
+   ],
+   "bbref": "freemfr01",
+   "rating": 136.1
+  },
+  {
+   "id": "smithwi05",
+   "name": "Will Smith",
+   "pos": "C",
+   "positions": [
+    "C"
+   ],
+   "bbref": "smithwi05",
+   "rating": 142.7
+  },
+  {
+   "id": "tuckeky01",
+   "name": "Kyle Tucker",
+   "pos": "RF",
+   "positions": [
+    "RF",
+    "LF"
+   ],
+   "bbref": "tuckeky01",
+   "rating": 139.3
+  },
+  {
+   "id": "muncyma01",
+   "name": "Max Muncy",
+   "pos": "3B",
+   "positions": [
+    "3B",
+    "1B",
+    "2B"
+   ],
+   "bbref": "muncyma01",
+   "rating": 129.3
+  },
+  {
+   "id": "hernate01",
+   "name": "Teoscar Hernández",
+   "pos": "LF",
+   "positions": [
+    "LF",
+    "RF",
+    "CF"
+   ],
+   "bbref": "hernate01",
+   "rating": 103.1
+  },
+  {
+   "id": "pagesan01",
+   "name": "Andy Pages",
+   "pos": "CF",
+   "positions": [
+    "CF",
+    "RF",
+    "LF"
+   ],
+   "bbref": "pagesan01",
+   "rating": 112.4
+  },
+  {
+   "id": "edmanto01",
+   "name": "Tommy Edman",
+   "pos": "2B",
+   "positions": [
+    "2B",
+    "SS",
+    "3B",
+    "CF",
+    "RF"
+   ],
+   "bbref": "edmanto01",
+   "rating": 85.8
+  }
+ ],
+ "rotation": [
+  {
+   "id": "yamamyo01",
+   "name": "Yoshinobu Yamamoto",
+   "pos": "SP",
+   "bbref": "yamamyo01",
+   "rating": 153.9,
+   "ip": 173.7
+  },
+  {
+   "id": "skubata01",
+   "name": "Tarik Skubal",
+   "pos": "SP",
+   "bbref": "skubata01",
+   "rating": 172.2,
+   "ip": 195.3
+  },
+  {
+   "id": "snellbl01",
+   "name": "Blake Snell",
+   "pos": "SP",
+   "bbref": "snellbl01",
+   "rating": 146.2,
+   "ip": 61.3
+  },
+  {
+   "id": "glasnty01",
+   "name": "Tyler Glasnow",
+   "pos": "SP",
+   "bbref": "glasnty01",
+   "rating": 120.7,
+   "ip": 90.3
+  }
+ ],
+ "closer": {
+  "id": "diazed04",
+  "name": "Edwin Díaz",
+  "pos": "RP",
+  "bbref": "diazed04",
+  "rating": 200.8,
+  "ip": 66.3
+ },
+ "bullpen": 125.5,
+ "pen": [
+  {
+   "id": "bubickr01",
+   "name": "Kris Bubic",
+   "pos": "RP",
+   "bbref": "bubickr01",
+   "rating": 148.0,
+   "ip": 116.3
+  },
+  {
+   "id": "stewabr01",
+   "name": "Brock Stewart",
+   "pos": "RP",
+   "bbref": "stewabr01",
+   "rating": 134.3,
+   "ip": 37.7
+  },
+  {
+   "id": "phillev01",
+   "name": "Evan Phillips",
+   "pos": "RP",
+   "bbref": "phillev01",
+   "rating": 131.8,
+   "ip": 5.7
+  },
+  {
+   "id": "henried01",
+   "name": "Edgardo Henriquez",
+   "pos": "RP",
+   "bbref": "henried01",
+   "rating": 129.0,
+   "ip": 19.0
+  },
+  {
+   "id": "vesiaal01",
+   "name": "Alex Vesia",
+   "pos": "RP",
+   "bbref": "vesiaal01",
+   "rating": 124.7,
+   "ip": 59.7
+  },
+  {
+   "id": "sasakro01",
+   "name": "Roki Sasaki",
+   "pos": "RP",
+   "bbref": "sasakro01",
+   "rating": 96.1,
+   "ip": 36.3
+  },
+  {
+   "id": "scottta01",
+   "name": "Tanner Scott",
+   "pos": "RP",
+   "bbref": "scottta01",
+   "rating": 91.7,
+   "ip": 57.0
+  }
+ ]
+}
