@@ -23,12 +23,15 @@ function fromB64Url(s: string): string {
 }
 
 /** Letters, numbers, spaces and simple punctuation, at most 24 characters. */
+/** Longest team name allowed anywhere: inputs, links and the preview picture. */
+export const TEAM_NAME_MAX = 24;
+
 export function cleanTeamName(s: unknown): string {
   return String(s ?? "")
     .replace(/[^\p{L}\p{N} '&.\-]/gu, "")
     .replace(/\s+/g, " ")
     .trim()
-    .slice(0, 24);
+    .slice(0, TEAM_NAME_MAX);
 }
 
 export function encodeShare(d: ShareData): string {

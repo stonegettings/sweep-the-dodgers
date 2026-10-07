@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import ShareCard from "@/components/ShareCard";
-import { headline, namedHeadline, shareText } from "@/lib/share";
+import { TEAM_NAME_MAX, headline, namedHeadline, shareText } from "@/lib/share";
 import { loadResult } from "@/lib/results";
 
 type Props = { params: Promise<{ code: string }> };
@@ -58,9 +58,9 @@ export default async function SharedResult({ params }: Props) {
         </ol>
         <form action="/" method="get" className="landing-form">
           <label className="field-label" htmlFor="team">
-            Name your team <span className="optional">(optional)</span>
+            Name your team <span className="optional">(optional, up to {TEAM_NAME_MAX} characters)</span>
           </label>
-          <input id="team" name="team" className="text-input team-input" maxLength={24} placeholder="e.g. The Comeback Kids" autoComplete="off" />
+          <input id="team" name="team" className="text-input team-input" maxLength={TEAM_NAME_MAX} placeholder="e.g. The Comeback Kids" autoComplete="off" />
           <button type="submit" className="btn btn-lamp landing-btn">
             Draft your own team
           </button>

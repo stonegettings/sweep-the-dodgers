@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { track } from "@vercel/analytics";
 import ShareCard from "./ShareCard";
-import { cleanTeamName, decodeShare, encodeShare, shareText } from "@/lib/share";
+import { TEAM_NAME_MAX, cleanTeamName, decodeShare, encodeShare, shareText } from "@/lib/share";
 
 type LinkState = { code: string; id: string | null; status: "pending" | "ready" | "fallback" };
 
@@ -99,15 +99,18 @@ export default function ShareBox({
           Share your result
         </h2>
         <label className="field-label" htmlFor="team-name">
-          Team name <span className="optional">(optional)</span>
+          Team name{" "}
+          <span className="optional">
+            (optional, {name.length}/{TEAM_NAME_MAX})
+          </span>
         </label>
         <input
           id="team-name"
           className="text-input"
           value={name}
-          maxLength={24}
+          maxLength={TEAM_NAME_MAX}
           placeholder="e.g. The Comeback Kids"
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value.slice(0, TEAM_NAME_MAX))}
           autoComplete="off"
         />
         <div className="share-actions" aria-busy={!ready}>

@@ -19,7 +19,7 @@ import {
   type SlotKey,
   type SpinResult,
 } from "@/lib/types";
-import { cleanTeamName, headline } from "@/lib/share";
+import { TEAM_NAME_MAX, cleanTeamName, headline } from "@/lib/share";
 import { APP_VERSION } from "@/lib/site";
 import { move, moveOptions, place, placementsFor, reachableSlots, type Placement } from "@/lib/roster";
 
@@ -261,15 +261,18 @@ export default function Game({
       {!result && (
         <section className="team-bar" aria-label="Team name">
           <label className="field-label" htmlFor="team-name-main">
-            Name your team
+            Name your team{" "}
+            <span className="optional">
+              ({teamName.length}/{TEAM_NAME_MAX})
+            </span>
           </label>
           <input
             id="team-name-main"
             className="text-input team-input"
             value={teamName}
-            maxLength={24}
+            maxLength={TEAM_NAME_MAX}
             placeholder="e.g. The Comeback Kids"
-            onChange={(e) => setTeamName(e.target.value)}
+            onChange={(e) => setTeamName(e.target.value.slice(0, TEAM_NAME_MAX))}
             onBlur={() => setTeamName(team)}
             autoComplete="off"
           />

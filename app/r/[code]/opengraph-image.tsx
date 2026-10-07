@@ -20,11 +20,14 @@ export default async function Image({ params }: { params: Promise<{ code: string
   const h = headline(games);
   const youW = games.filter(([y, l]) => y > l).length;
   const title = namedHeadline(games, d?.n);
-  const teamLabel = d?.n && d.n.length <= 10 ? d.n : "Their team";
+  // Any name up to the 24-character limit fits: long names shrink and wrap onto two lines.
+  const teamLabel = d?.n || "Their team";
+  // Both rows share one size, so the scoreboard stays even.
+  const nameSize = teamLabel.length <= 10 ? 44 : teamLabel.length <= 16 ? 36 : 32;
 
   const row = (label: string, color: string, side: 0 | 1) => (
     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-      <div style={{ width: 230, fontSize: 44, fontWeight: 800, color }}>{label}</div>
+      <div style={{ width: 300, fontSize: nameSize, fontWeight: 800, color, lineHeight: 1.05, display: "flex", alignItems: "center", height: 92, overflow: "hidden" }}>{label}</div>
       {Array.from({ length: 7 }, (_, i) => {
         const g = games[i];
         const won = g && (side === 0 ? g[0] > g[1] : g[1] > g[0]);
@@ -32,7 +35,7 @@ export default async function Image({ params }: { params: Promise<{ code: string
           <div
             key={i}
             style={{
-              width: 86,
+              width: 78,
               height: 92,
               background: PLATE,
               display: "flex",
